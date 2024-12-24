@@ -70,11 +70,11 @@ class snake():
         self.body[-1].dirny = dy
     
     def draw(self, surface):
-        for i,c in enumerate(self.body):
+        for i, body_part in enumerate(self.body):
             if i == 0:
-                c.draw(surface, True)
+                body_part.draw(surface, is_snake_head=True)
             else:
-                c.draw(surface)
+                body_part.draw(surface, is_snake_body=True)
 
 
 

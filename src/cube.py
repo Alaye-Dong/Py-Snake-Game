@@ -15,14 +15,20 @@ class cube():
         self.dirny = dirny
         self.pos  = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
             
-    def draw(self, surface, is_snake=True):
+    def draw(self, surface, is_snake_head=False, is_snake_body=False):
         dis = self.w // self.rows
         i = self.pos[0]
         j = self.pos[1]
-        # 在绘制时加载图像
-        claus_img, gift_img = load_images(self.w, self.rows)
-        # 如果是蛇，绘制蛇图像
-        if is_snake:
-            surface.blit(claus_img, (i*dis, j*dis))  # 绘制蛇的图像
+
+        # 加载图像
+        beer_img, claus_img, gift_img = load_images(self.w, self.rows)
+
+        # 绘制蛇头
+        if is_snake_head:
+            surface.blit(beer_img, (i * dis, j * dis))  # 绘制蛇头的图像
+        # 绘制蛇身
+        elif is_snake_body:
+            surface.blit(claus_img, (i * dis, j * dis))  # 绘制蛇身的图像
+        # 绘制食物
         else:
-            surface.blit(gift_img, (i*dis, j*dis))  # 绘制食物的图像
+            surface.blit(gift_img, (i * dis, j * dis))  # 绘制食物的图像

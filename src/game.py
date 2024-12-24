@@ -9,15 +9,24 @@ height = 500
 cols = 25
 rows = 20
 
-# 调用load_images()来获取图像
-claus_img, gift_img = load_images(width, rows)
+# 调用 load_images() 来获取图像
+beer_img, claus_img, gift_img = load_images(width, rows)
 
 def redrawWindow():
     global win
-    win.fill((0,0,0))
+    win.fill((0, 0, 0))
     drawGrid(width, rows, win)
-    s.draw(win)  # 绘制蛇
-    snack.draw(win, is_snake=False)  # 绘制食物
+
+    # 绘制蛇
+    for i, body_part in enumerate(s.body):
+        if i == 0:  # 第一个部分是蛇头
+            body_part.draw(win, is_snake_head=True)
+        else:  # 其余部分是蛇身
+            body_part.draw(win, is_snake_body=True)
+
+    # 绘制食物
+    snack.draw(win)  # 只传递 surface，不需要传递 is_snake 参数
+
     # 显示得分
     font = pygame.font.Font(None, 36)  # 创建字体对象
     score_text = font.render(f"Score: {len(s.body)-1}", True, (255, 255, 255))  # 渲染得分文本
