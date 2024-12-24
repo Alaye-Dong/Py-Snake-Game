@@ -14,9 +14,14 @@ def redrawWindow():
     drawGrid(width, rows, win)
     s.draw(win)
     snack.draw(win)
+    # 显示得分
+    font = pygame.font.Font(None, 36)  # 创建字体对象
+    score_text = font.render(f"Score: {len(s.body)-1}", True, (255, 255, 255))  # 渲染得分文本
+    win.blit(score_text, (10, 10))  # 将得分文本绘制到屏幕上
     pygame.display.update()
 
 def main():
+    pygame.init()
     global s, snack, win
     win = pygame.display.set_mode((width,height))
     s = snake((255,0,0), (10,10))
