@@ -2,18 +2,22 @@ import pygame
 from snake import snake
 from cube import cube
 from utils import drawGrid, randomSnack
+from assets import load_images  # 导入加载图像的函数
 
 width = 500
 height = 500
 cols = 25
 rows = 20
 
+# 调用load_images()来获取图像
+claus_img, gift_img = load_images(width, rows)
+
 def redrawWindow():
     global win
     win.fill((0,0,0))
     drawGrid(width, rows, win)
-    s.draw(win)
-    snack.draw(win)
+    s.draw(win)  # 绘制蛇
+    snack.draw(win, is_snake=False)  # 绘制食物
     # 显示得分
     font = pygame.font.Font(None, 36)  # 创建字体对象
     score_text = font.render(f"Score: {len(s.body)-1}", True, (255, 255, 255))  # 渲染得分文本
