@@ -10,7 +10,7 @@ cols = 25
 rows = 20
 
 # 调用 load_images() 来获取图像
-beer_img, claus_img, gift_img = load_images(width, rows)
+claus_img, gift_img, beer_img = load_images(width, rows)
 
 def redrawWindow():
     global win
